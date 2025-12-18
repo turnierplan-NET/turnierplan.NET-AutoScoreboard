@@ -39,7 +39,7 @@ public sealed class Main : PageModel
 
         if (switches.Count > 0)
         {
-            // Replace the "last" switch with a delay of 0 so this tournament is shown immediately
+            // Replace the "last" switch with a delay of 1ms so this tournament is shown immediately
             var last = switches[^1];
             switches.RemoveAt(switches.Count - 1);
             switches.Add((1, last.TournamentUrl));
