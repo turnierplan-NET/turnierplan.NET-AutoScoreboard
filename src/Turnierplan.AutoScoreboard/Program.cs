@@ -1,3 +1,5 @@
+using Turnierplan.AutoScoreboard;
+
 Console.WriteLine();
 Console.WriteLine( "  __                                                     ___                                        __");
 Console.WriteLine(@" /\ \__                        __                       /\_ \                                      /\ \__");
@@ -12,9 +14,15 @@ Console.WriteLine();
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<AutoScoreboardOptions>(builder.Configuration.GetSection("AutoScoreboard"));
+builder.Services.AddSingleton<TournamentLoader>();
+builder.Services.AddHostedService(sp => sp.GetRequiredService<TournamentLoader>());
+builder.Services.AddTransient<ITournamentLoader>(sp => sp.GetRequiredService<TournamentLoader>());
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
+app.MapStaticAssets();
 app.MapRazorPages();
+
 app.Run();

@@ -4,5 +4,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+    <UserSecretsId>b4da9f9b-1be5-4a5e-b191-3f5a5d1a0b47</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Turnierplan.Adapter" Version="2025.3.1" />
+  </ItemGroup>
 </Project>
