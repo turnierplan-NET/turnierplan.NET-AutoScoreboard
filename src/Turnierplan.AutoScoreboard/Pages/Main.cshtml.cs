@@ -23,7 +23,7 @@ public sealed class Main : PageModel
         var timeWithOffset = DateTime.UtcNow.AddSeconds(_options.ClockSkewForSwitchInSeconds);
         var switches = new List<(long Delay, string TournamentUrl)>();
 
-        foreach (var entry in _tournamentLoader.Tournaments.OrderBy(x => x.StartsAt).Reverse())
+        foreach (var entry in _tournamentLoader.Tournaments.OrderByDescending(x => x.StartsAt))
         {
             var startsInMilliseconds = (entry.StartsAt - timeWithOffset).Ticks / TimeSpan.TicksPerMillisecond;
             var tournamentUrl = GenerateTournamentUrl(entry.TournamentId);
@@ -32,7 +32,7 @@ public sealed class Main : PageModel
             var hasBegun = entry.StartsAt < timeWithOffset;
             if (hasBegun)
             {
-                // If this tournament has already started, we don't have to process any more tournaments
+                // If this tournament has already started, we don't have to process any more tournaments since they are ordered by descending start timestamp
                 break;
             }
         }
