@@ -8,6 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Turnierplan.Adapter" Version="2025.3.1" />
+    <PackageReference Include="Turnierplan.Adapter" Version="2025.4.0" />
   </ItemGroup>
 </Project>
