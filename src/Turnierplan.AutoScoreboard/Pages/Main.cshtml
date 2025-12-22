@@ -1,4 +1,5 @@
 @page
+@using System.Web
 @model Turnierplan.AutoScoreboard.Pages.Main
 
 @{
@@ -25,7 +26,7 @@
 
 @foreach (var k in Model.Switches)
 {
-    <script>setTimeout(() => document.getElementById('contentFrame').src = '@k.TournamentUrl', @k.Delay);</script>
+    <script>setTimeout(() => document.getElementById('contentFrame').src = @Html.Raw(HttpUtility.JavaScriptStringEncode(k.TournamentUrl, addDoubleQuotes: true)), @k.Delay);</script>
 }
 </body>
 </html>

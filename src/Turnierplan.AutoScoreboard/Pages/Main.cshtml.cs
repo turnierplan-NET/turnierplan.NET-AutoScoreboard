@@ -55,10 +55,11 @@ public sealed class Main : PageModel
         sb.Append(_options.BaseUrl.TrimEnd("/"));
         sb.Append("/TournamentFullscreen?id=");
         sb.Append(tournamentId);
-        sb.Append("&showQrCode=");
-        sb.Append(_options.FullscreenViewIncludeQrCode ? "true" : "false");
         sb.Append("&autoReload=");
         sb.Append(_options.FullscreenViewRefreshInterval);
+        sb.Append("&autoScroll=true");
+        sb.Append("&showQrCode=");
+        sb.Append(_options.FullscreenViewIncludeQrCode ? "true" : "false");
 
         return sb.ToString();
     }
