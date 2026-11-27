@@ -30,7 +30,7 @@ internal sealed class TournamentLoader : ITournamentLoader, IHostedService
         var config = new TurnierplanClientOptions(_options.BaseUrl, _options.ApiKeyId, _options.ApiKeySecret);
         using var client = new TurnierplanClient(config);
 
-        var tournamentHeaders = await client.GetTournaments(_options.FolderId);
+        var tournamentHeaders = await client.GetTournamentsAsync(_options.FolderId, cancellationToken);
         _logger.LogInformation("Loaded {tournamentCount} tournament headers", tournamentHeaders.Count);
 
         for (var i = 0; i < tournamentHeaders.Count; i++)
@@ -45,7 +45,7 @@ internal sealed class TournamentLoader : ITournamentLoader, IHostedService
 
             _logger.LogInformation("Loading tournament {tournamentIndex} of {totalTournaments} with id '{tournamentId}'", i  + 1, tournamentHeaders.Count, header.Id);
 
-            var tournament = await client.GetTournament(header.Id);
+            var tournament = await client.GetTournamentAsync(header.Id, cancellationToken);
 
             DateTime? firstKickoff = null;
             foreach (var match in tournament.Matches)
